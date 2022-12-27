@@ -28,14 +28,41 @@ button {
     border-radius: 5px;
 }
 
-#stop-btn {
-    background: darkred;
+#forward-btn {
+    background: grey;
+    
+  position: relative;
+  left: 300px;
 }
 
-#start-btn {
-    background: darkgreen;
+#backward-btn {
+    background: darkgreen;    
+    position: relative;
+    top: 100px;
+    left: 100px;
 }
 
-#clear-btn {
+#left-btn {
     background: black;
+    position: relative;
+    top: 50px;
+    left: -300px;
+}
+
+#right-btn {
+    background: green;
+    position: relative;
+    top: 50px;
+    left: -100px;
+}
+
+#stop-btn {
+    background: rebeccapurple;
+    position: relative;
+    top: 200px;
+}
+
+#output {
+    position: relative;
+    top: 250px;
 }

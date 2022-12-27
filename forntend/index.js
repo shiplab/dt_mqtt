@@ -2,39 +2,89 @@ let mqtt;
 let reconnectTimeout = 2000;
 let host = "broker.hivemq.com";
 let port = 8000;
+let tt =500;
 
 function onConnect() {
     // Once a connection has been made, make a subscription and send a message.
 
     console.log("Connected ");
-    mqtt.subscribe("/ntnunbuenidh/CPUtemp");
+    mqtt.subscribe("/ntnunbuenidh/outputState");
 
-    message = new Paho.MQTT.Message("on");
+    message = new Paho.MQTT.Message("b");
     message.destinationName = "/ntnunbuenidh/state";
     mqtt.send(message);
 
 }
 
-function stop() {
-    message = new Paho.MQTT.Message("off");
+function forward() {
+    console.log("forward ");
+    message = new Paho.MQTT.Message("f");
     message.destinationName = "/ntnunbuenidh/state";
     mqtt.send(message);
+
+    setTimeout(function() {
+        stop();
+      }, tt);
 
     let div = document.getElementById('output');
     div.textContent = " "
 
 }
 
-function start() {
-    message = new Paho.MQTT.Message("on");
+function backward() {
+    console.log("backward ");
+    message = new Paho.MQTT.Message("b");
     message.destinationName = "/ntnunbuenidh/state";
     mqtt.send(message);
 
+    setTimeout(function() {
+        stop();
+      }, tt);
+
+    let div = document.getElementById('output');
+    div.textContent = " "
+
 }
 
+function left() {
+    console.log("left ");
+    message = new Paho.MQTT.Message("l");
+    message.destinationName = "/ntnunbuenidh/state";
+    mqtt.send(message);
+
+    setTimeout(function() {
+        stop();
+      }, tt);
+
+    let div = document.getElementById('output');
+    div.textContent = " "
+
+}
+
+function right() {
+    console.log("right ");
+    message = new Paho.MQTT.Message("r");
+    message.destinationName = "/ntnunbuenidh/state";
+    mqtt.send(message);
+
+    setTimeout(function() {
+        stop();
+      }, tt);
+
+    let div = document.getElementById('output');
+    div.textContent = " "
+
+}
+
+function stop() {
+    message = new Paho.MQTT.Message("s");
+    message.destinationName = "/ntnunbuenidh/state";
+    mqtt.send(message);
+    console.log("stop ");
+}
 
 function onMessageArrived(msg) {
-    out_msg = "Topic: " + msg.destinationName + ",   " + msg.payloadString
+    out_msg = "Topic: " +",   " + msg.payloadString
     console.log(out_msg)
 
     let div = document.getElementById('output');
